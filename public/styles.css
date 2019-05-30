@@ -232,7 +232,10 @@ _:-ms-input-placeholder, :root .lg-graph {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
 }
-
+/* calendar page */
+.Homepage-full-page {
+  height: 100vh;
+}
 /* yelp Search */
 .Homepage___yelp-search {
   text-align: center;
@@ -258,6 +261,12 @@ _:-ms-input-placeholder, :root .lg-graph {
 }
 .mdc-icon-button__icon.mdc-icon-button__icon--on {
   display: inline-block !important;
+}
+.c-datepicker--open {
+  z-index: 999;
+}
+.c-datepicker__header {
+  line-height: normal !important;
 }
 
 @media (max-width: 767px) {
