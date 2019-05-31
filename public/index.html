@@ -87,29 +87,64 @@
             <span class="visuallyhidden">Accounts Settings</span>
           </button>
           <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-            <li id="edit_profile" class="mdl-menu__item">Edit</li>
+            <li id="edit_profile" class="mdl-menu__item paper-button ripple">My Color</li>
             <li id="logout" class="mdl-menu__item">sign-out</li>
           </ul>
         </div>
       </header>
       <nav class="lg-navigation mdl-navigation mdl-color--blue-grey-800">
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-            role="presentation">home</i>Home</a>
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-            role="presentation">calendar_today</i>Calendar</a>
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-            role="presentation">restaurant</i>Search Restaurants</a>
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-            role="presentation">favorite</i>Favorites</a>
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
+        <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
+            role="presentation">home</i>Home</a> -->
+        <a class="mdl-navigation__link active" data-target="calendar_page"><i
+            class="mdl-color-text--blue-grey-400 material-icons" role="presentation">calendar_today</i>Calendar</a>
+        <a class="mdl-navigation__link" data-target="schedule_page"><i
+            class="mdl-color-text--blue-grey-400 material-icons" role="presentation">restaurant</i>Search
+          Restaurants</a>
+        <a class="mdl-navigation__link" data-target="favorite_page"><i
+            class="mdl-color-text--blue-grey-400 material-icons" role="presentation">favorite</i>Favorites</a>
+        <a class="mdl-navigation__link"><i class="mdl-color-text--blue-grey-400 material-icons"
             role="presentation">chat</i>Chat</a>
         <div class="mdl-layout-spacer"></div>
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
+        <a class="mdl-navigation__link"><i class="mdl-color-text--blue-grey-400 material-icons"
             role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <section class="Homepage-full-page">
+      <div class="translate">
+        <div class="color-picker" data-value="#2196F3">
+          <div class="red"></div>
+          <div class="blue"></div>
+          <div class="green"></div>
+          <div class="indigo"></div>
+          <div class="brown"></div>
+          <div class="black"></div>
+          <div class="teal"></div>
+          <div class="deep-orange"></div>
+          <div class="light-blue"></div>
+          <div class="light-green"></div>
+          <div class="deep-purple"></div>
+          <div class="amber"></div>
+          <div class="blue-gray"></div>
+          <div class="pink"></div>
+          <div class="orange"></div>
+          <div class="cyan"></div>
+          <div class="lime"></div>
+          <div class="purple"></div>
+          <div class="yellow"></div>
+          <div class="gray"></div>
+          <div class="white"></div>
+          <div class="transparent"></div>
+          <input type="color" id="colorinput">
+          <span class="hex">
+            <input type="text" id="text">
+            <div class="underline"></div>
+          </span>
+          <div id="close">
+            <i class="material-icons">done</i>
+          </div>
+        </div>
+      </div>
+      <section id="calendar_page" class="Homepage-full-page Homepage-active">
         <div class="mdl-grid lg-content">
           <div class="lg-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <div id='calendar'></div>
@@ -118,7 +153,7 @@
 
       </section>
 
-      <section class="Homepage-full-page">
+      <section id="schedule_page" class="Homepage-full-page">
         <div class="mdl-grid lg-content Homepage___yelp-search">
           <div class="lg-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <div class="Homepage___yelp-search-term mdc-text-field text-field mdc-text-field--outlined">
@@ -132,12 +167,21 @@
               <div class="mdc-line-ripple"></div>
             </div>
             <button id="yelp_search" class="mdc-button mdc-button--raised mdc-ripple-upgraded"><i
-                class="material-icons mdc-button__icon">fastfood</i><span class="mdc-button__label">Search</span></button>
+                class="material-icons mdc-button__icon">fastfood</i><span
+                class="mdc-button__label">Search</span></button>
           </div>
           <div id="yelp_results" class="lg-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-            </div>
+          </div>
         </div>
+      </section>
+
+      <section id="favorite_page" class="Homepage-full-page Homepage-active">
+        <div class="mdl-grid lg-content">
+          <div id="favorite_results"
+            class="lg-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"></div>
+        </div>
+
       </section>
       <!-- Cadalog Event Modal -->
       <div class="mdc-dialog test_01" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
@@ -146,7 +190,7 @@
           <div class="mdc-dialog__surface">
             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
             <h2 class="mdc-dialog__title" id="my-dialog-title">
-                Dialog Title
+              Dialog Title
             </h2>
             <div class="mdc-dialog__content" id="my-dialog-content">
               Dialog body text goes here.
@@ -170,7 +214,7 @@
           <div class="mdc-dialog__surface">
             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
             <h2 class="mdc-dialog__title" id="my-dialog-title">
-                Add to calendar
+              Add to calendar
             </h2>
             <div class="mdc-dialog__content" id="my-dialog-content">
               Dialog body text goes here.

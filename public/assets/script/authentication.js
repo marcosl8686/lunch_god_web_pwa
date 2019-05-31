@@ -21,6 +21,7 @@
        localStorage.setItem('firebase_idToken', idToken);
        localStorage.setItem('firebase_user_email', userInfo.email);
        localStorage.setItem('firebase_user_img', userInfo.photoURL);
+       localStorage.setItem('firebase_userName', userInfo.displayName);
        window.location.replace('/');
     }).catch(function(err){
         console.log(err)
