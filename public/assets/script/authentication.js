@@ -10,6 +10,13 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user)
+    if (user) {
+      window.location.replace('/');
+    } 
+  });
   
   function signInWithGoogle() {
     console.log(firebase)
@@ -22,7 +29,6 @@
        localStorage.setItem('firebase_user_email', userInfo.email);
        localStorage.setItem('firebase_user_img', userInfo.photoURL);
        localStorage.setItem('firebase_userName', userInfo.displayName);
-       window.location.replace('/');
     }).catch(function(err){
         console.log(err)
     })

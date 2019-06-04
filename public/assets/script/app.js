@@ -28,6 +28,12 @@ const textField = [].map.call(document.querySelectorAll('.mdc-text-field'), func
 });
 console.log(mdc)
 
+firebase.auth().onAuthStateChanged(function(user) {
+  if (!user) {
+    window.location.replace('/login');
+  } 
+});
+
 window.addEventListener('load', function () {
 
   var calendarEl = document.getElementById('calendar');
@@ -70,12 +76,19 @@ window.addEventListener('load', function () {
   }
 
   logoutBtn.addEventListener('click', function () {
-    localStorage.removeItem('firebase_idToken');
-    localStorage.removeItem('firebase_user');
-    localStorage.removeItem('firebase_user_email');
-    localStorage.removeItem('firebase_user_img');
-    localStorage.removeItem('firebase_userName');
-    window.location.replace('/login');
+    firebase.auth().signOut()
+    .then(function() {
+      localStorage.removeItem('firebase_idToken');
+      localStorage.removeItem('firebase_user');
+      localStorage.removeItem('firebase_user_email');
+      localStorage.removeItem('firebase_user_img');
+      localStorage.removeItem('firebase_userName');
+      window.location.replace('/login');
+    })
+    .catch(function(error) {
+     console.log(error)
+    });
+    
   });
 
   function getUserInfo() {
@@ -141,6 +154,13 @@ window.addEventListener('load', function () {
         $(this).css('color', 'pink');
         firebaseUserDB.child(userData_name).child('favorite').push(selectedRestaurantObj);
       })
+
+      //fake loading
+
+      setTimeout(function(){
+        $('#load_page').fadeOut();
+        $('.load_hidden').removeClass('load_hidden');
+      }, 2000)
   }
 
   init();

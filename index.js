@@ -1,21 +1,17 @@
 const express = require('express');
 const fetch = require('node-fetch');
-const firebase = require('firebase');
-require('firebase/auth');
-require('firebase/database');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 const admin = require("firebase-admin");
-
+require('firebase/auth')
 const serviceAccount = require("./pwa-lunch-god-firebase-adminsdk-vy2kq-c624cac838.json");
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://pwa-lunch-god.firebaseio.com"
 });
-//Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -24,6 +20,20 @@ app.get('/', function(req, res){
 app.get('/login', function(req, res){
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 })
+//Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// function itsAuthenticated(req, res, next) {
+//     console.log('hit!');
+//     var user = admin.auth().currentUser;
+//     console.log(user)
+//       if (user !== null) {
+//         req.user = user;
+//         next();
+//       } else {
+//         res.redirect('/login');
+//       }
+// }
 
 //yelp Search API
 

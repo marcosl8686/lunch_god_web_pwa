@@ -24,15 +24,31 @@
   <meta name="msapplication-TileColor" content="#3372DF">
 
   <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Lunch God">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-57x57.png" sizes="57x57">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-60x60.png" sizes="60x60">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-72x72.png" sizes="72x72">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-76x76.png" sizes="76x76">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-114x114.png" sizes="114x114">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-120x120.png" sizes="120x120">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-144x144.png" sizes="144x144">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-152x152.png" sizes="152x152">
+  <link rel="apple-touch-icon" href="/images/icons/apple-icon-180x180.png" sizes="180x180">
+  <meta name="msapplication-TileImage" content="/images/icons/app-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#fff">
+  <meta name="theme-color" content="#6200ee">
 
   <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
   <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
   <script>
-    if (!localStorage.getItem('firebase_idToken')) {
-      window.location.replace('/login');
-    }
+    // if (!localStorage.getItem('firebase_idToken')) {
+    //   window.location.replace('/login');
+    // }
   </script>
 
   <link rel="stylesheet"
@@ -47,6 +63,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
   <style>
     #view-source {
       position: fixed;
@@ -61,7 +78,12 @@
 </head>
 
 <body>
-  <div class="lg-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <div id="load_page" class="text-center flex-center">
+      <div class="loading-typography">
+          <p>Loading</p>
+      </div>
+    </div>
+  <div class="lg-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header load_hidden">
     <header class="lg-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Home</span>
@@ -89,6 +111,7 @@
           <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
             <li id="edit_profile" class="mdl-menu__item paper-button ripple">My Color</li>
             <li id="logout" class="mdl-menu__item">sign-out</li>
+            <li id="install" class="mdl-menu__item">Install App</li>
           </ul>
         </div>
       </header>
@@ -176,7 +199,7 @@
         </div>
       </section>
 
-      <section id="favorite_page" class="Homepage-full-page Homepage-active">
+      <section id="favorite_page" class="Homepage-full-page">
         <div class="mdl-grid lg-content">
           <div id="favorite_results"
             class="lg-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"></div>
@@ -297,6 +320,7 @@
   <script src="https://ripjar.github.io/material-datetime-picker/picker/js/datepicker.standalone.js"></script>
   <script src="/assets/script/firebaseInit.js"></script>
   <script src="/assets/script/app.js"></script>
+  <script type="module" src="/assets/script/sw_base.js"></script>
 </body>
 
 </html>
