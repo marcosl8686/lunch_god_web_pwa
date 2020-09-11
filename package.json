@@ -14,7 +14,7 @@
     "firebase": "^6.1.0",
     "firebase-admin": "^8.0.0",
     "firebase-tools": "^6.10.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^1.19.1"
   }
 }
